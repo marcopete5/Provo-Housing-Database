@@ -5,6 +5,8 @@ from django.db import models
 class Listing(models.Model):
 	name = models.CharField(max_length=70)
 
+	roommates = models.IntegerField()
+
 	MALE = 'M'
 	FEMALE = 'F'
 	OTHER = 'Other'
