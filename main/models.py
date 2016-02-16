@@ -33,13 +33,13 @@ class Listing(models.Model):
 	OTHER = 'Other'
 	CONTRACT_LENGTH = (
 		(FALL, 'Fall'),
-		(SUMMER = 'Summer'),
-		(WINTER = 'Winter'),
-		(FALL_WINTER = 'Fall/Winter'),
-		(WINTER_SUMMER = 'Winter/Summer'),
-		(SUMMER_FALL = 'Summer/Fall'),
-		(FULL_YEAR = 'Full Year'),
-		(OTHER = 'Other'),
+		(SUMMER, 'Summer'),
+		(WINTER, 'Winter'),
+		(FALL_WINTER, 'Fall/Winter'),
+		(WINTER_SUMMER, 'Winter/Summer'),
+		(SUMMER_FALL, 'Summer/Fall'),
+		(FULL_YEAR, 'Full Year'),
+		(OTHER, 'Other'),
 		)
 	contract_length = models.CharField(max_length=15, choices=CONTRACT_LENGTH, default=FALL_WINTER)
 
