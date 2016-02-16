@@ -43,4 +43,12 @@ class Listing(models.Model):
 		)
 	contract_length = models.CharField(max_length=15, choices=CONTRACT_LENGTH, default=FALL_WINTER)
 
+	APARTMENT = 'Apt'
+	HOUSE = 'House'
+	BUILDING_TYPE = (
+		(APARTMENT, 'Apartment'),
+		(HOUSE, 'House'),
+		)
+	building_type = models.CharField(max_length=10, choices=BUILDING_TYPE, default=APARTMENT)
+
 
