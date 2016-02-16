@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'housing',
         'HOST': '127.0.0.1',
         'USER': 'root',
-        'PASSWORD': 'Mdabomb/5',
+        'PASSWORD': 'Howdy802!',
         'PORT': '',
     }
 }
@@ -111,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'US/Mountain'
 
 USE_I18N = True
 
