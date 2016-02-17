@@ -7,6 +7,8 @@ class Listing(models.Model):
 
 	roommates = models.IntegerField()
 
+	availability_date = models.DateField()
+
 	MALE = 'M'
 	FEMALE = 'F'
 	OTHER = 'Other'
