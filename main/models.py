@@ -29,7 +29,7 @@ class Listing(models.Model):
         )
     room_type = models.CharField(max_length=7, choices=ROOM_TYPE, default=PRIVATE)
 
-    FURNISHED = 'Furnished' #dan
+    FURNISHED = 'Furnished' 
     PARTIAL_FURNISHED = 'Partial Furnished' 
     UNFURNISHED = 'Unfurnished' 
     FURNISHINGS = (
@@ -37,7 +37,7 @@ class Listing(models.Model):
         (PARTIAL_FURNISHED, 'Partial Furnished'),
         (UNFURNISHED, 'Unfurnished'),
         ) 
-    furnishings_type = models.CharField(max_length=20, choices=FURNISHINGS, default=UNFURNISHED) #dan
+    furnishings_type = models.CharField(max_length=20, choices=FURNISHINGS, default=UNFURNISHED) 
 
     FALL = 'Fall'
     SUMMER = 'Summer'
