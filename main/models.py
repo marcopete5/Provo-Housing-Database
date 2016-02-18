@@ -33,9 +33,9 @@ class Listing(models.Model):
     PARTIAL_FURNISHED = 'Partial Furnished' 
     UNFURNISHED = 'Unfurnished' 
     FURNISHINGS = (
-        (FURNISHED,'Furnished')
-        (PARTIAL_FURNISHED , 'Partial Furnished')
-        (UNFURNISHED, 'Unfurnished')
+        (FURNISHED,'Furnished'),
+        (PARTIAL_FURNISHED, 'Partial Furnished'),
+        (UNFURNISHED, 'Unfurnished'),
         ) 
     furnishings_type = models.CharField(max_length=20, choices=FURNISHINGS, default=UNFURNISHED) #dan
 
@@ -68,5 +68,7 @@ class Listing(models.Model):
     building_type = models.CharField(max_length=10, choices=BUILDING_TYPE, default=APARTMENT)
     
     BYU_housing = models.BooleanField(default=True)
+
+    distance_from_universities = models.IntegerField()
 
 
