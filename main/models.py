@@ -3,25 +3,41 @@ from __future__ import unicode_literals
 from django.db import models
 
 class Listing(models.Model):
-    MALE = 'M'
-    FEMALE = 'F'
-    OTHER = 'Other'
-    GENDER_CHOICES = (
-        (MALE, 'Male'),
-        (FEMALE, 'Female'),
-        (OTHER, 'Other'),
-    )
-    gender_choices = models.CharField(max_length=5, choices=GENDER_CHOICES, default=MALE)
+	name = models.CharField(max_length=70)
 
-    SHARED = 'Shared'
-    PRIVATE = 'Private'
-    MARRIED = 'Married'
-    ROOM_TYPE = (
-        (SHARED, 'Shared'),
-        (PRIVATE, 'Private'),
-        (MARRIED, 'Married'),
-    )
-    room_type = models.CharField(max_length=7, choices=ROOM_TYPE, default=PRIVATE)
+	roommates = models.IntegerField()
+
+	availability_date = models.DateField()
+
+	MALE = 'M'
+	FEMALE = 'F'
+	OTHER = 'Other'
+	GENDER_CHOICES = (
+		(MALE, 'Male'),
+		(FEMALE, 'Female'),
+		(OTHER, 'Other'),
+		)
+	gender_choices = models.CharField(max_length=5, choices=GENDER_CHOICES, default=MALE)
+
+	SHARED = 'Shared'
+	PRIVATE = 'Private'
+	MARRIED = 'Married'
+	ROOM_TYPE = (
+		(SHARED, 'Shared'),
+		(PRIVATE, 'Private'),
+		(MARRIED, 'Married'),
+		)
+	room_type = models.CharField(max_length=7, choices=ROOM_TYPE, default=PRIVATE)
+
+	FURNISHED = 'Furnished' #dan
+	PARTIAL_FURNISHED = 'Partial Furnished' 
+	UNFURNISHED = 'Unfurnished' 
+	FURNISHINGS = (
+		(FURNISHED,'Furnished')
+		(PARTIAL_FURNISHED , 'Partial Furnished')
+		(UNFURNISHED, 'Unfurnished')
+		) 
+	furnishings_type = models.CharField(max_length=20, choices=FURNISHINGS, default=UNFURNISHED) #dan
 
     FALL = 'Fall'
     SUMMER = 'Summer'
