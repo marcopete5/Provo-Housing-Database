@@ -67,6 +67,14 @@ class Listing(models.Model):
         )
     building_type = models.CharField(max_length=10, choices=BUILDING_TYPE, default=APARTMENT)
     
-    BYU_housing = models.BooleanField(default=True)
+    BYU_housing = models.BooleanField(default=False)
+    
+    amenity = models.ForeignKey('Amenities')
+    
+    
+class Amenities(models.Model):
+    amenity = models.CharField(max_length=20)
+    class Meta:
+        verbose_name_plural = 'amenities'
 
 
