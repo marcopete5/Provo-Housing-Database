@@ -77,5 +77,7 @@ class Listing(models.Model):
 
     state = models.CharField(max_length=70)
 
+    selling_price = models.IntegerField()
+
 
 
