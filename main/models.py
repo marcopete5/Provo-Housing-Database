@@ -71,12 +71,6 @@ class Listing(models.Model):
 
     
     amenity = models.ForeignKey('Amenities')
-    
-    
-class Amenities(models.Model):
-    amenity = models.CharField(max_length=20)
-    class Meta:
-        verbose_name_plural = 'amenities'
 
 
     distance_from_universities = models.IntegerField()
@@ -89,6 +83,9 @@ class Amenities(models.Model):
 
     selling_price = models.IntegerField()
 
->>>>>>> 13f8f22544603aa4869b53eaa00feb561065ad15
+class Amenities(models.Model):
+    amenity = models.CharField(max_length=20)
+    class Meta:
+        verbose_name_plural = 'amenities'
 
 
