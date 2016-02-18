@@ -6,3 +6,4 @@ local_settings.py
 staticfiles/
 housing.sublime-project
 *.orig
+temporary.txt
