@@ -67,7 +67,7 @@ class Listing(models.Model):
         )
     building_type = models.CharField(max_length=10, choices=BUILDING_TYPE, default=APARTMENT)
     
-    BYU_housing = models.BooleanField(default=True)
+    BYU_housing = models.BooleanField(default=False)
 
     distance_from_universities = models.IntegerField()
 
