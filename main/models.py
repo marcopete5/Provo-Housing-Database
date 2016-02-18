@@ -71,4 +71,11 @@ class Listing(models.Model):
 
     distance_from_universities = models.IntegerField()
 
+    address = models.CharField(max_length=70)
+
+    city = models.CharField(max_length=70)
+
+    state = models.CharField(max_length=70)
+
+
 
