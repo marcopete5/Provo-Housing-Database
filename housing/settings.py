@@ -78,11 +78,7 @@ WSGI_APPLICATION = 'housing.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'housing',
-        'HOST': '127.0.0.1',
-        'USER': 'root',
-        'PASSWORD': 'Howdy802!',
-        'PORT': '',
+
     }
 }
 
