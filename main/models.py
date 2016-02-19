@@ -73,7 +73,9 @@ class Listing(models.Model):
     amenity = models.ForeignKey('Amenities')
 
 
-    distance_from_universities = models.IntegerField()
+    distance_from_BYU = models.IntegerField()
+
+    distance_from_UVU = models.IntegerField()
 
     address = models.CharField(max_length=70)
 
