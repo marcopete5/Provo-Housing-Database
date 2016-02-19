@@ -86,6 +86,10 @@ class Listing(models.Model):
 
     selling_price = models.IntegerField()
 
+    description = models.TextField()
+
+    upload_image = models.ImageField()
+
 class Amenities(models.Model):
     amenity = models.CharField(max_length=20)
 
