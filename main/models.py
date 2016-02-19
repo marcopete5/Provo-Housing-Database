@@ -70,7 +70,7 @@ class Listing(models.Model):
     BYU_housing = models.BooleanField(default=False)
 
     
-    amenity = models.ForeignKey('Amenities')
+    amenity = models.ManyToManyField('Amenities')
 
     apartment_complex = models.BooleanField(default=True)
 
