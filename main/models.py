@@ -72,6 +72,7 @@ class Listing(models.Model):
     
     amenity = models.ForeignKey('Amenities')
 
+    apartment_complex = models.BooleanField(default=True)
 
     distance_from_BYU = models.IntegerField()
 
@@ -93,6 +94,9 @@ class Amenities(models.Model):
 
     class Meta:
         verbose_name_plural = 'amenities'
+
+
+
 
 
 
