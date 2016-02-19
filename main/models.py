@@ -85,7 +85,13 @@ class Listing(models.Model):
 
 class Amenities(models.Model):
     amenity = models.CharField(max_length=20)
+
+    def __unicode__(self):
+        return self.amenity
+
     class Meta:
         verbose_name_plural = 'amenities'
+
+
 
 
