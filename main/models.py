@@ -74,9 +74,11 @@ class Listing(models.Model):
 
     apartment_complex = models.BooleanField(default=True)
 
-    distance_from_BYU = models.IntegerField()
+    complex_name = models.ForeignKey('ComplexName')
 
-    distance_from_UVU = models.IntegerField()
+    distance_from_BYU = models.IntegerField(null=True, blank=True)
+
+    distance_from_UVU = models.IntegerField(null=True, blank=True)
 
     address = models.CharField(max_length=70)
 
@@ -88,7 +90,10 @@ class Listing(models.Model):
 
     description = models.TextField()
 
-    upload_image = models.ImageField()
+    upload_image = models.ImageField(null=True, blank=True)
+
+    def __unicode__(self):
+        return self.address
 
 class Amenities(models.Model):
     amenity = models.CharField(max_length=20)
@@ -98,6 +103,12 @@ class Amenities(models.Model):
 
     class Meta:
         verbose_name_plural = 'amenities'
+
+class ComplexName(models.Model):
+    name = models.CharField(max_length=40)
+
+    def __unicode__(self):
+        return self.name
 
 
 
