@@ -6,6 +6,23 @@
 // This example requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+$(document).ready(function(){
+  $('.list').click(function(){
+    $('#map').fadeOut('fast');
+  });
+});
+$(document).ready(function(){
+  $('.map').click(function(){
+    $('#map').fadeIn('fast');
+  });
+});
+$(document).ready(function(){
+  $('.list').hover(function(){
+    $
+  });
+  
+});
+
 
 function initAutocomplete() {
  var map = new google.maps.Map(document.getElementById('map'), {
@@ -71,6 +88,7 @@ function initAutocomplete() {
  });
  // [END region_getplaces]
 }
+
 
 
 
