@@ -6,10 +6,11 @@ html, body {
 }
 
 #map {
-  margin: 19%;
-  margin-left: 14%;
-  margin-top:10%;
-  height: 90%;
+    margin: 19%;
+    margin-left: 14%;
+    margin-top: 5%;
+    height: 93%;
+    z-index: -1;
 }
 
 .controls {
@@ -57,3 +58,130 @@ html, body {
  #target {
   width: 345px;
 }
+
+.top {
+    z-index: 10;
+    position: fixed;
+    background-color: red;
+    height: 80px;
+    width: 100%;
+    margin-top: -98px;
+}
+
+.sidebar {
+    margin-top: 0%;
+    border-right: #d1d0d0 1px solid;
+    width: 200px;
+    height: 900px;
+    float: left;
+}
+#search {
+    text-align: left;
+    margin-left: 23px;
+    margin-top: 6%;
+    margin-bottom: -27px;
+}
+ul {
+  margin-top: 54px;
+}
+
+#title {
+  font-size: 43px;
+  color: white;
+  padding: 14px;
+  font-family: 'Oswald',Sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  margin-top: 0px;
+}
+
+.first {
+    margin: 14%;
+    z-index: 1;
+    position: relative;
+    margin-bottom: -5.1%;
+    height: 40px;
+    width: 66.99%;
+    /* margin-right: 19%; */
+    margin-left: 14.02%;
+    margin-top: 2%;
+}
+
+.map {
+    position: absolute;
+    height: 38px;
+    background: #E9E9E9;
+    border: rgba(0, 0, 0, 0.48) 1px solid;
+    border-bottom: rgba(255, 255, 255, 0) 1px solid;
+    border-radius: 7px 7px 2px 2px;
+}
+
+.list {
+      position: absolute;
+    height: 38px;
+    background: #E9E9E9;
+    right: 0;
+    border: rgba(0, 0, 0, 0.48) 1px solid;
+    border-bottom: rgba(255, 255, 255, 0) 1px solid;
+    border-radius: 7px 7px 2px 2px;
+}
+p {
+  font-family: 'Oswald',Sans-serif;
+    font-weight: 100;
+    text-transform: uppercase;
+    letter-spacing: 0px;
+    margin-top: 0px;
+    margin: 0 0 10px;
+    color: #343131;
+    font-size: 29px;
+    text-align: center;
+}
+#listview {
+    width: 67%;
+    height: 700px;
+    margin-left: 14%;
+    margin-top: 5%;
+    margin-bottom: -10%;
+    position: absolute;
+    z-index: -1;
+  }
+
+.doo {
+  margin-left: 0px;
+  margin-right: 0px;
+
+}
+.do {
+  height: 600px;
+  border:1px solid;
+}
+.house {
+      height: 10%;
+    margin-top: 1%;
+}
+.apt {
+      height: 10%;
+    margin-top: 1%;
+}
+.icontitle {
+  margin-top: -7%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
