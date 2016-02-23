@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Testing two HTML</title>
+</head>
+
+<body>
+
+    <div class="bigPicture">
+
+        <div>
+            
+            <h3>Listing for: {{ listing.complex_name.name }} </h3>
+
+
+            <h4>Seller Name:</h4> {{ listing.name }}
+            <h4>Availability Date:</h4> {{ listing.availability_date }}
+            <h4>Number of Roommates:</h4>{{ listing.roommates}}
+            <h4>Roommate Gender:</h4>{{ listing.gender_choices }}
+            <h4>Room Type:</h4>{{ listing.room_type }}
+            <h4>Furnishings:</h4>{{ listing.furnishings_type }}
+            <h4>Contract Length:</h4>{{ listing.contract_length }}
+            <h4>Building Type:</h4>{{ listing.building_type }}
+
+
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

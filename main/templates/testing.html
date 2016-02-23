@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Testing HTML</title>
 </head>
+
 <body>
-    
+
+    {% for complex in complex_list %}
+
+    <a href="/testing/{{ complex.id }}">{{ complex.name }}</a>
+    </br>
+
+    {% endfor %}
+
 </body>
+
 </html>

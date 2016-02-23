@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Testing two HTML</title>
+</head>
+
+<body>
+
+    <div class="bigPicture">
+
+        <div>
+
+            <h3>Listings for: {{ appartment.name }} </h3>
+            </br>
+            
+            {% for listing in appartment.listing_set.all %}
+            
+            <a href="/listing/{{ listing.id }}">{{ listing.address }}</a>
+
+            </br>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

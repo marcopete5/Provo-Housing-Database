@@ -1,63 +1,73 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html>
- <head>
-   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-   <meta charset="utf-8">
 
-   <title>Places Searchbox</title>
+<head>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	<meta charset="utf-8">
+
+	<title>Places Searchbox</title>
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 
 	<link rel="stylesheet" type="text/css" href=" {% static 'css/base.css' %} ">
 
- </head>
+</head>
 
- <body>
+<body>
 
-<div class="top">
-	<h1 id="title">Provo Housing Database</h1>
-</div>
+	<div class="top">
+		<h1 id="title">Provo Housing Database</h1>
+	</div>
 
-	<div id="search"><h4>Search By:</h4></div>
+	<div id="search">
+		<h4>Search By:</h4></div>
 
-<div class="sidebar">
-	
-	
-			<ul>Distance to BYU</ul>
-			<ul>Distance to UVU</ul>
-			<ul>Price Range</ul>
-			<ul># of Roommates</ul>
-			<ul>Roommate Gender</ul>
-			<ul>Shared/Private</ul>
-			<ul>Contract Length</ul>
-			<ul>Furnished</ul>
-			<ul>Availability</ul>
-			<ul>Apt/House</ul>
-		
-</div>
-
-<div class="row first">
-	<div class="col-md-6 map"><p>Map View</p></div>
-	<div class="col-md-6 list"><p>List View</p></div>
-</div>
-   <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-   
-   <div id="listview">
-   	<div class="row doo">
-   		<div class="col-md-6 do"><img src=" {% static 'home.png' %} " class="house" alt=""><p class="icontitle">Houses or Single Listings</p></div>
-   		<div class="col-md-6 do"><img src=" {% static 'apartment.png' %} " class="apt" alt=""><p class="icontitle">Apartment Complexes</p></div>
-   	</div>
-   </div>
-   <div id="map"></div>
+	<div class="sidebar">
 
 
+		<ul>Distance to BYU</ul>
+		<ul>Distance to UVU</ul>
+		<ul>Price Range</ul>
+		<ul># of Roommates</ul>
+		<ul>Roommate Gender</ul>
+		<ul>Shared/Private</ul>
+		<ul>Contract Length</ul>
+		<ul>Furnished</ul>
+		<ul>Availability</ul>
+		<ul>Apt/House</ul>
 
-   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-   <script type="text/javascript" src="{% static 'js/base.js' %}"></script>
-   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaKLjivuDKpR4yNtlz53u5B68-xq02VVU&libraries=places&callback=initAutocomplete"
-        async defer></script>
- 
- </body>
+	</div>
+
+	<div class="row first">
+		<div class="col-md-6 map">
+			<p>Map View</p>
+		</div>
+		<div class="col-md-6 list">
+			<p>List View</p>
+		</div>
+	</div>
+	<input id="pac-input" class="controls" type="text" placeholder="Search Box">
+
+	<div id="listview">
+		<div class="row doo">
+			<div class="col-md-6 do"><img src=" {% static 'home.png' %} " class="house" alt="">
+				<p class="icontitle">Houses or Single Listings</p>
+			</div>
+			<div class="col-md-6 do"><img src=" {% static 'apartment.png' %} " class="apt" alt="">
+				<p class="icontitle">Apartment Complexes</p>
+			</div>
+		</div>
+	</div>
+	<div id="map"></div>
+
+
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="{% static 'js/base.js' %}"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaKLjivuDKpR4yNtlz53u5B68-xq02VVU&libraries=places&callback=initAutocomplete" async defer></script>
+
+</body>
+
 </html>

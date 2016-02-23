@@ -71,8 +71,8 @@ class Listing(models.Model):
 	
 	BYU_housing = models.BooleanField(default=False)
 
-    
-    amenity = models.ManyToManyField('Amenities')
+
+	amenity = models.ManyToManyField('Amenities')
 
 	apartment_complex = models.BooleanField(default=True)
 
@@ -98,7 +98,7 @@ class Listing(models.Model):
 		return self.address
 
 	def save(self):
-		gmaps = googlemaps.Client(key=local_GoogleAPI_key)	
+		gmaps = googlemaps.Client(key=local_GoogleAPI_key)
 		
 		googleAPI_dict_BYU = gmaps.distance_matrix("%s %s %s" % (self.address,self.city,self.state), "155 East 1230 North, Provo, UT" )
 		googleAPI_dict_UVU = gmaps.distance_matrix("%s %s %s" % (self.address,self.city,self.state), "800 W. University Pkwy, Orem, Utah 84058" )
