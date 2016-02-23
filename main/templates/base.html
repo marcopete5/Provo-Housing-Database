@@ -22,7 +22,8 @@
 	</div>
 
 	<div id="search">
-		<h4>Search By:</h4></div>
+		<h4>Search By:</h4>
+	</div>
 
 	<div class="sidebar">
 
@@ -40,33 +41,15 @@
 
 	</div>
 
-	<div class="row first">
-		<div class="col-md-6 map">
-			<p>Map View</p>
-		</div>
-		<div class="col-md-6 list">
-			<p>List View</p>
-		</div>
-	</div>
-	<input id="pac-input" class="controls" type="text" placeholder="Search Box">
+	
+	{% block mainblock %}
+	
 
-	<div id="listview">
-		<div class="row doo">
-			<div class="col-md-6 do"><img src=" {% static 'home.png' %} " class="house" alt="">
-				<p class="icontitle">Houses or Single Listings</p>
-			</div>
-			<div class="col-md-6 do"><img src=" {% static 'apartment.png' %} " class="apt" alt="">
-				<p class="icontitle">Apartment Complexes</p>
-			</div>
-		</div>
-	</div>
-	<div id="map"></div>
+	{% endblock mainblock %}
 
 
 
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script type="text/javascript" src="{% static 'js/base.js' %}"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaKLjivuDKpR4yNtlz53u5B68-xq02VVU&libraries=places&callback=initAutocomplete" async defer></script>
+
 
 </body>
 

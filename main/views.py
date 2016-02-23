@@ -3,14 +3,11 @@ from django.views.generic import TemplateView, DetailView
 
 from .models import ComplexName, Listing
 
-class Main(TemplateView):
-
-	template_name = "base.html"
 
 #class Testing(TemplateView):
 #   template_name = "testing.html"
 
-def appartment_complex(request):
+def home(request):
 	complex_name = ComplexName.objects.all()
 	house_listings = Listing.objects.filter(apartment_complex=False)
 
@@ -19,18 +16,19 @@ def appartment_complex(request):
 	context['complex_list'] = complex_name
 	context['house_list'] = house_listings
 
+	print "house list %s" % context['house_list']
+	print "complex list %s" % context['complex_list']
+
+	return render(request, 'both_list_views.html', context)
 
 
-	return render(request, 'testing.html', context)
-
-
-class ApptComplexDetailView(DetailView):
+class AptComplexDetailView(DetailView):
 	model = ComplexName
-	template_name = "testing_two.html"
-	context_object_name = "appartment"
+	template_name = "both_list_views.html"
+	context_object_name = "complex"
 
 
-class ApptListingDetailView(DetailView):
+class AptListingDetailView(DetailView):
 	model = Listing
-	template_name = "testing_three.html"
+	template_name = "detail_view.html"
 	context_object_name = "listing"

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Testing two HTML</title>
+</head>
+
+<body>
+{% block mainblock %}
+
+	<div class="bigPicture">
+
+		<div>
+			
+			<h3>Listing for: {{ listing.complex_name.name }} </h3>
+
+			<h4>Image:</h4> {{ single_listing.upload_image }}
+			<h4>Seller Name:</h4> {{ listing.name }}
+			<h4>Availability Date:</h4> {{ listing.availability_date }}
+			<h4>Number of Roommates:</h4>{{ listing.roommates}}
+			<h4>Roommate Gender:</h4>{{ listing.gender_choices }}
+			<h4>Room Type:</h4>{{ listing.room_type }}
+			<h4>Furnishings:</h4>{{ listing.furnishings_type }}
+			<h4>Contract Length:</h4>{{ listing.contract_length }}
+			<h4>Building Type:</h4>{{ listing.building_type }}
+			<h4>Description:</h4> {{ single_listing.description }}
+			<h4>Address:</h4> {{ single_listing.address }}
+			<h4>City:</h4> {{ single_listing.city }}
+			<h4>State:</h4> {{ single_listing.state }}
+			<h4>BYU Housing:</h4> {{ single_listing.BYU_housing }}
+			<h4>Is it an Apartment Complex:</h4> {{ single_listing.apartment_complex }}
+			<h4>Complex Name:</h4> {{ single_listing.complex_name }}
+			<h4>Distance from BYU:</h4> {{ single_listing.distance_from_BYU  }}
+			<h4>Distance from UVU:</h4> {{ single_listing.distance_from_UVU  }}
+			<h4>Selling Price:</h4> {{ single_listing.selling_price }}
+			{% for amenity in amenities %}
+				<h4>Amenities:</h4> {{ amenity }}
+			{% endfor %}
+
+
+
+		</div>
+
+	</div>
+
+{% endblock mainblock %}
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

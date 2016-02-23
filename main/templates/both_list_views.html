@@ -1,0 +1,64 @@
+
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block mainblock %}
+
+
+<div>
+	<div class="row first">
+		<div class="col-md-6 map">
+			<p>Map View</p>
+		</div>
+		<div class="col-md-6 list">
+			<p>List View</p>
+		</div>
+	</div>
+	<input id="pac-input" class="controls" type="text" placeholder="Search Box">
+	
+	<div id="listview">
+		<div class="row doo">
+			<div class="col-md-6 do"><!-- house list -->
+				<div class="row">
+					<img src=" {% static 'home.png' %} " class="house" alt="">
+					<p class="icontitle">Non Complex Units:</p>
+				</div>	
+			</div><!-- house list -->
+	
+			<div class="col-md-6 do"><!-- apartment complex -->
+				<div class="row ">
+					<img src=" {% static 'apartment.png' %} " class="apt" alt="">
+					<p class="icontitle">Apartment Complex Listings: 
+						<div class="">
+							{% for complex in complex_list %}
+								<div class="complex">
+									{{ complex.name }}
+								</div>
+								<div class="listing" id="complex{{ complex.id }}">
+									{% for listing in complex.listing_set.all %}
+										<a href="/listing/{{ listing.id }}">{{ listing.name }}</a>
+										</br>
+									{% endfor %}
+								</div>
+							{% endfor %}
+						</div>
+				</div>
+			</br>
+			
+</p>
+			</div><!-- end apartment complex -->
+		</div>
+	</div>
+	
+	
+	
+
+</div>
+<div id="map">.</div>
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="{% static 'js/base.js' %}"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaKLjivuDKpR4yNtlz53u5B68-xq02VVU&libraries=places&callback=initAutocomplete" async defer></script>
+
+
+{% endblock mainblock %}
