@@ -33,7 +33,8 @@ $(document).ready(function(){
 
 	function initAutocomplete() {
 	 var map = new google.maps.Map(document.getElementById('map'), {
-	   center: {lat: -33.8688, lng: 151.2195},
+	   center: {lat: 40.2573138, lng: -111.7089457},
+	   
 	   zoom: 13,
 	   mapTypeId: google.maps.MapTypeId.ROADMAP
 	 });
