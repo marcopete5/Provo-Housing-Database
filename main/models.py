@@ -108,7 +108,7 @@ class Listing(models.Model):
 		tempUVU = (googleAPI_dict_UVU['rows'][0]['elements'][0]['distance']['text'])
 		
 		def str_to_miles_convert(temp1):
-			temp1 = temp1.split() #temp1 '413 km' as example
+			temp1 = temp1.split() #temp1's form: '413 km' as example
 			dist_in_miles = round((float(temp1[0])*.621371), 1)
 			return dist_in_miles
 
@@ -116,6 +116,7 @@ class Listing(models.Model):
 		self.distance_from_BYU = str_to_miles_convert(tempBYU)
 		print "dist %d" % self.distance_from_BYU
 		self.distance_from_UVU = str_to_miles_convert(tempUVU)
+
 
 		super(Listing, self).save()
 
