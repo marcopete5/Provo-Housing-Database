@@ -1,11 +1,19 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, DetailView
+from django.core import serializers
+from django.http import HttpResponse
 
 from .models import ComplexName, Listing
 
 
 #class Testing(TemplateView):
 #   template_name = "testing.html"
+
+def housing_API_view(request):
+	listings = Listing.objects.all()
+	output = serializers.serialize('json', listings, fields=('name','address','city','state'))
+
+	return HttpResponse(output, content_type='application/json')
 
 def home(request):
 	complex_name = ComplexName.objects.all()

@@ -9,4 +9,5 @@ urlpatterns = [
 	#url(r'^complex/$','main.views.appartment_complex'),
 	url(r'^complex/(?P<pk>\d+)/$', AptComplexDetailView.as_view()),
 	url(r'^listing/(?P<pk>\d+)/$', AptListingDetailView.as_view()),
+	url(r'^housing_api/', 'main.views.housing_API_view'),
 ]
