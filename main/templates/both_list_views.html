@@ -1,0 +1,78 @@
+
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block mainblock %}
+
+
+<div class="col-xs-9">
+	<div class="row">
+		<div class="col-xs-6 map">
+			<p>Map View</p>
+		</div>
+		<div class="col-xs-6 list">
+			<p>List View</p>
+		</div>
+	</div>
+
+	
+	<div id="listview" class="row">
+		<div class="col-xs-6"><!-- house list -->
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="row border">
+						
+						<img src=" {% static 'home.png' %} " class="house" alt="">
+			
+						<p class="icontitle">Houses &amp; Other Single Units:</p>
+
+					
+				
+						{% for house in house_list %}
+							<div class="house">
+								<div class="houseListing">{{ house.name }}</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+					
+			</div>	
+		</div><!-- house list -->
+
+		<div class="col-xs-6"><!-- apartment complex -->
+			<div class="row border">
+				<img src=" {% static 'apartment.png' %} " class="apt" alt="">
+				<p class="icontitle">Apartment Complex Listings: 
+					<div class="">
+						{% for complex in complex_list %}
+							<div class="complex">
+								{{ complex.name }}
+							</div>
+							<div class="listing" id="complex{{ complex.id }}">
+								{% for listing in complex.listing_set.all %}
+									<a href="/listing/{{ listing.id }}">{{ listing.name }}</a>
+									</br>
+								{% endfor %}
+							</div>
+						{% endfor %}
+					</div>
+			</div>
+		</div><!-- end apartment complex -->
+	</div>
+</div>
+	
+
+	
+	
+
+
+<div id="map">.</div>
+
+
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="{% static 'js/base.js' %}"></script>
+	<script  async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaKLjivuDKpR4yNtlz53u5B68-xq02VVU&libraries=places&callback=initAutocomplete"></script>
+
+
+{% endblock mainblock %}

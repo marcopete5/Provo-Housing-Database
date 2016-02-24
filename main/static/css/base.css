@@ -5,12 +5,13 @@ html, body {
   padding: 0;
 }
 
+
 #map {
-    margin: 19%;
-    margin-left: 14%;
-    margin-top: 5%;
-    height: 93%;
-    z-index: -1;
+    margin-right: 8%;
+    /*margin-left: 14%;*/
+    margin-top: 40px;
+    height: 100%;
+  
 }
 
 .controls {
@@ -63,14 +64,15 @@ html, body {
     z-index: 10;
     position: fixed;
     background-color: red;
-    height: 80px;
+    height: 100px;
     width: 100%;
-    margin-top: -98px;
+    /*margin-top: -98px;*/
 }
 
 .sidebar {
     margin-top: 0%;
-    border-right: #d1d0d0 1px solid;
+   
+  /*  border-right: #d1d0d0 1px solid;*/
     width: 200px;
     height: 900px;
     float: left;
@@ -138,13 +140,14 @@ p {
     text-align: center;
 }
 #listview {
-    width: 67%;
-    height: 700px;
-    margin-left: 14%;
+    width: 100%;
+    height: 500px;
     margin-top: 5%;
+/*    margin-left: 14%;
+    
     margin-bottom: -10%;
-    position: absolute;
-    z-index: -1;
+    position: absolute;*/
+    /*z-index: -1;*/
   }
 
 .doo {
@@ -157,8 +160,9 @@ p {
   border:1px solid;
 }
 .house {
-      height: 10%;
+    height: 10%;
     margin-top: 1%;
+
 }
 .apt {
       height: 10%;
@@ -168,8 +172,54 @@ p {
   margin-top: -7%;
 }
 
+.complex {
+  padding-left: 5%;
+  font-size: 2em;
+
+}
+
+.listing {
+  padding-left: 8%;
+  font-size: 1.2em;
+
+  /*for the jquery*/
+  display: none; 
+
+}
+
+.houseListing {
+  padding-left: 8%;
+  font-size: 1.2em;
 
 
+
+}
+
+.listTitle {
+  font-family: 'Oswald',Sans-serif;
+  font-weight: 100;
+  text-transform: uppercase;
+  letter-spacing: 0px;
+  color: #343131;
+  font-size: 2em;
+  text-align: center;
+  margin-top:10px;
+}
+
+.border {
+  border: 2px solid;
+  border-color: blue;
+}
+
+.bottomBorder {
+  border-bottom: 2px solid;
+  border-color: red;
+}
+
+.spacer  {
+    width: 100%;
+    height: 105px;
+}
 
 
 
