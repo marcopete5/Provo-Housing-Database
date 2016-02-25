@@ -7,95 +7,75 @@
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 $(document).ready(function(){
+	console.log('test')
 	$('#listview').hide();
-  $('.list').click(function(){
-    $('#map').hide();
-    $('#listview').fadeIn('fast');
-  });
 
-  $('.map').click(function(){
-    $('#map').show();
-    $('#listview').fadeOut('fast');
-  });
+	$('.list').click(function(){
+		$('#map').hide();
+		$('#listview').fadeIn('fast');
+		$('#pac-input').hide();
+	});
 
-  $('.list').hover(function(){
-    $
-  });
+	$('.map').click(function(){
+		$('#map').show();
+		$('#listview').fadeOut('fast');
+		$('#pac-input').show();
+	});
 
-  $('.complex').click(function(){
-  	console.log('test');
-  	$(this).next().fadeIn('fast');
-  })
+	$('.list').hover(function(){
+		$
+	});
 
-});
+	$('.complex').click(function(){
+		console.log('test');
+		$(this).next().fadeIn('fast');
+	})
+})
+	
 
 
 
-	function initAutocomplete() {
-	 var map = new google.maps.Map(document.getElementById('map'), {
-	   center: {lat: 40.2573138, lng: -111.7089457},
-	   
-	   zoom: 13,
-	   mapTypeId: google.maps.MapTypeId.ROADMAP
-	 });
 
-	 // Create the search box and link it to the UI element.
-	 var input = document.getElementById('pac-input');
-	 var searchBox = new google.maps.places.SearchBox(input);
-	 map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+	function initMap() {
+		var map = new google.maps.Map(document.getElementById('map'), {
 
-	 // Bias the SearchBox results towards current map's viewport.
-	 map.addListener('bounds_changed', function() {
-	   searchBox.setBounds(map.getBounds());
-	 });
+			center: {lat: 40.2573138, lng: -111.7089457},
+		 
+			zoom: 12,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+	});
+		var geocoder = new google.maps.Geocoder();
+		$.get("http://127.0.0.1:8000/housing_api", function(data, status){
+			var x;
+			console.log(data)
+			for (x = 0; x < data.length; x++) {
+				
 
-	 var markers = [];
-	 // [START region_getplaces]
-	 // Listen for the event fired when the user selects a prediction and retrieve
-	 // more details for that place.
-	 searchBox.addListener('places_changed', function() {
-	   var places = searchBox.getPlaces();
+					geocoder = new google.maps.Geocoder();
+					console.log('data:'+data[x].fields.address)
+					function codeAddress() {
+						var address = data[x].fields.address+' '+data[x].fields.city+', '+data[x].fields.state
+						console.log('addy:'+address)
+						// document.getElementById("address").value;
+						console.log('geo  '+geocoder)
+						geocoder.geocode( { 'address': address}, function(results, status) {
+							if (status == google.maps.GeocoderStatus.OK) {
+								//In this case it creates a marker, but you can get the lat and lng from the location.LatLng
+								map.setCenter(results[0].geometry.location);
+								var marker = new google.maps.Marker({
+										map: map, 
+										position: results[0].geometry.location
+								});
+							} else {
+								alert("Geocode was not successful for the following reason: " + status);
+							}
+						});
+					}
+					codeAddress()
+			}
+		});//close get housing_api
 
-	   if (places.length == 0) {
-	     return;
-	   }
-
-	   // Clear out the old markers.
-	   markers.forEach(function(marker) {
-	     marker.setMap(null);
-	   });
-	   markers = [];
-
-	   // For each place, get the icon, name and location.
-	   var bounds = new google.maps.LatLngBounds();
-	   places.forEach(function(place) {
-	     var icon = {
-	       url: place.icon,
-	       size: new google.maps.Size(71, 71),
-	       origin: new google.maps.Point(0, 0),
-	       anchor: new google.maps.Point(17, 34),
-	       scaledSize: new google.maps.Size(25, 25)
-	     };
-
-	     // Create a marker for each place.
-	     markers.push(new google.maps.Marker({
-	       map: map,
-	       icon: icon,
-	       title: place.name,
-	       position: place.geometry.location
-	     }));
-
-	     if (place.geometry.viewport) {
-	       // Only geocodes have viewport.
-	       bounds.union(place.geometry.viewport);
-	     } else {
-	       bounds.extend(place.geometry.location);
-	     }
-	   });
-	   map.fitBounds(bounds);
-	 });
-	 // [END region_getplaces]
-	}
+	};
 
 
 
