@@ -10,10 +10,19 @@ from .models import ComplexName, Listing
 #   template_name = "testing.html"
 
 def housing_API_view(request):
-	listings = Listing.objects.all()
-	output = serializers.serialize('json', listings, fields=('name','address','city','state'))
+	request.method == 'POST'
+
+	complexes = ComplexName.objects.all()
+	listings = Listing.objects.filter(apartment_complex=False)
+
+	complex_output = serializers.serialize('json', complexes, fields=('name', 'address'))
+	listings_output = serializers.serialize('json', listings, fields=('name', 'address', 'city', 'state'))
+
+	output = [complex_output,listings_output]
 
 	return HttpResponse(output, content_type='application/json')
+
+
 
 def home(request):
 	complex_name = ComplexName.objects.all()
@@ -26,6 +35,7 @@ def home(request):
 
 	print "house list %s" % context['house_list']
 	print "complex list %s" % context['complex_list']
+
 
 	return render(request, 'both_list_views.html', context)
 
