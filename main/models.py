@@ -72,7 +72,7 @@ class Listing(models.Model):
 	BYU_housing = models.BooleanField(default=False)
 
 
-	amenity = models.ManyToManyField('Amenities')
+	amenity = models.ManyToManyField('Amenities', blank=True, null=True)
 
 	apartment_complex = models.BooleanField(default=True)
 
@@ -84,6 +84,8 @@ class Listing(models.Model):
 
 	address = models.CharField(max_length=70)
 
+	apt_number = models.CharField(max_length=20,null=True, blank=True, verbose_name='Apt/Suite #')
+
 	city = models.CharField(max_length=70)
 
 	state = models.CharField(max_length=70)
@@ -93,6 +95,10 @@ class Listing(models.Model):
 	description = models.TextField()
 
 	upload_image = models.ImageField(null=True, blank=True)
+
+	deposit = models.CharField(max_length=70, null=True, blank=True)
+
+	creation_date = models.DateField(auto_now=True)
 
 	def __unicode__(self):
 		return self.address
@@ -134,6 +140,8 @@ class Amenities(models.Model):
 
 class ComplexName(models.Model):
 	name = models.CharField(max_length=40)
+	address = models.CharField(max_length=150)
+
 
 	def __unicode__(self):
 		return self.name

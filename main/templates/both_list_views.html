@@ -4,9 +4,79 @@
 
 {% block mainblock %}
 
+<div class="row">
 
+
+		
+		<div class="col-xs-2">
+			
+			<div id="filters">
+				<input class="searches" placeholder="Search" />
+				<button class="sort" data-sort="name">
+					Sort
+				</button>
+
+			<ul>Distance to BYU</ul>
+			  
+			  <input type="range" min="0" max="25" value="1" onchange=""/>
+			  <span id="range">0</span>
+			  <script type="text/javascript">
+
+			  </script>
+
+			<ul>Distance to UVU</ul>
+			  <input type="range" min="0" max="25" value="1"/>
+			<ul>Price Range</ul>
+			  <input type="range" min="50" max="2500" value="300"/>
+			<ul># of Roommates</ul>
+			  <input type="range" min="0" max="25" value="1"/>
+			<ul>Roommate Gender</ul>
+			  <form>
+			    <input type="checkbox"  value="male"> Male<br>
+				<input type="checkbox"  value="female"> Female <br>
+				<input type="checkbox"  value="mixed"> Mixed
+			  </form>
+			<ul>Shared/Private</ul>
+			<form>
+			    <input type="checkbox"  value="private"> Private<br>
+				<input type="checkbox"  value="shared"> Shared
+			  </form>
+			<ul>Contract Length</ul>
+			<form>
+			    <input type="checkbox"  value="fall/winter"> Fall/Winter <br>
+				<input type="checkbox"  value="full year"> Full Year <br>
+				<input type="checkbox"  value="winter/summer"> Winter/Summer <br>
+				<input type="checkbox"  value="summer/fall"> Summer/Fall <br>
+				<input type="checkbox"  value="fall"> Fall <br>
+				<input type="checkbox"  value="summer"> Summer <br>
+				<input type="checkbox"  value="winter"> Winter <br>
+				<input type="checkbox"  value="no contract"> No Contract <br>
+				<input type="checkbox"  value="other"> Other
+			  </form>
+			<ul>Furnished</ul>
+			<form>
+			    <input type="checkbox"  value="furnished"> Furnished<br>
+				<input type="checkbox"  value="not furnished"> Partially Furnished<br>
+				<input type="checkbox"  value="not furnished"> Not Furnished
+			</form>
+			<ul>Availability Date</ul>
+			<form>
+				<input type="checkbox"  value="available now"> Available Now<br>
+			</form>
+			<ul>Apt/House</ul>
+			<form>
+			    <input type="checkbox"  value="apartment"> Apartment<br>
+				<input type="checkbox"  value="house"> House
+			  </form>
+        
+		</div>
+
+		</div>
+
+
+<div class="sidebars">
 <div class="col-xs-9">
-	<div class="row">
+	<div class="row tabs">
 		<div class="col-xs-6 map">
 			<p>Map View</p>
 		</div>
@@ -68,7 +138,7 @@
 
 <div id="map">.</div>
 
-
+</div>
 
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script type="text/javascript" src="{% static 'js/base.js' %}"></script>
