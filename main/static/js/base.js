@@ -53,25 +53,45 @@ $(document).ready(function(){
 
 					geocoder = new google.maps.Geocoder();
 					console.log('data:'+data[x].fields.address)
-					function codeAddress() {
+					console.log("x= "+x)
+					function codeAddress(data, x) {
+
 						var address = data[x].fields.address+' '+data[x].fields.city+', '+data[x].fields.state
 						console.log('addy:'+address)
 						// document.getElementById("address").value;
 						console.log('geo  '+geocoder)
-						geocoder.geocode( { 'address': address}, function(results, status) {
+						location.LatLng
+						geocoder.geocode( { 'address': address }, function(results, status) {
+							latitude = results[0].geometry.location.lat() 
+							longitude = results[0].geometry.location.lng()
+							console.log("lat: "+latitude)
+							console.log(x+" "+results+" -results")
+							console.log("in geocode function: "+status)
+							console.log("x= "+x)
 							if (status == google.maps.GeocoderStatus.OK) {
-								//In this case it creates a marker, but you can get the lat and lng from the location.LatLng
-								map.setCenter(results[0].geometry.location);
-								var marker = new google.maps.Marker({
-										map: map, 
-										position: results[0].geometry.location
-								});
+								console.log("data[x].model: "+data[x].model)
+								if (data[x].model == 'main.complexname') {
+									map.setCenter(results[0].geometry.location);
+									var marker = new google.maps.Marker({
+											icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+											map: map, 
+											position: results[0].geometry.location
+									}); //var marker
+								} else if (data[x].model == 'main.listing') {
+									map.setCenter(results[0].geometry.location);
+									var marker = new google.maps.Marker({
+											map: map, 
+											position: results[0].geometry.location
+										}); //var marker
+								}
 							} else {
-								alert("Geocode was not successful for the following reason: " + status);
+								alert("Geocode was not successful for the following reason: " + status + address);
 							}
+								
 						});
+
 					}
-					codeAddress()
+					codeAddress(data, x)
 			}
 		});//close get housing_api
 
