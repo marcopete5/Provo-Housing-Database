@@ -7,18 +7,10 @@
 <div class="row">
 
 
-						{% for complex in complex_list %}
-							<div class="complex">
-								{{ complex.name }}
-							</div>
-							<div class="listing" id="complex{{ complex.id }}">
-								{% for listing in complex.listing_set.all %}
-									<a href="/listing/{{ listing.id }}">{{ listing.name }}</a>
-									</br>
-						{% endfor %}
+
 		
 		<div class="col-xs-2">
-			{% for complex in complex_list %}
+			
 			<div id="filters">
 				<input class="searches" placeholder="Search" />
 				<button class="sort" data-sort="name">
