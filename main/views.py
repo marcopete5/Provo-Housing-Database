@@ -26,10 +26,6 @@ def housing_API_view(request):
 	return HttpResponse(output, content_type='application/json')
 
 
-
-
-
-
 def home(request):
 	complex_name = ComplexName.objects.all()
 	house_listings = Listing.objects.filter(apartment_complex=False)

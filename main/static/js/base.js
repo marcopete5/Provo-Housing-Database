@@ -30,8 +30,21 @@ $(document).ready(function(){
 		console.log('test');
 		$(this).next().fadeIn('fast');
 	})
+	
+//	$('#filters').keypress(function(){
+//		var num = $(this).input
+//		if(num >)
+//	})
 })
 	
+
+
+
+var options = {
+  valueNames: [ 'address' ]
+};
+
+var userList = new List('filters', options);
 
 
 
