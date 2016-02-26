@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, DetailView
+from django.views.generic.edit import CreateView
 from django.core import serializers
 from django.http import HttpResponse
-from django.views.generic.edit import CreateView
 from itertools import chain
 
-from .forms import ListingForm
 from .models import ComplexName, Listing
+from .forms import ListingForm
 
 
 #class Testing(TemplateView):
@@ -26,6 +26,26 @@ def housing_API_view(request):
 	output = json
 
 	return HttpResponse(output, content_type='application/json')
+
+
+
+
+
+def list_units_in_complex(request, pk):
+	print "pk %s: " % pk
+	listings = Listing.objects.filter(complex_name=pk)
+	complexname = ComplexName.objects.get(pk=pk)
+	context={}
+
+	print"listings: %s" % listings
+
+	context['complex'] = complexname
+	context['listings'] = listings
+
+
+	return render(request, 'list_detail.html', context)
+
+
 
 
 def home(request):
@@ -56,14 +76,7 @@ class AptListingDetailView(DetailView):
 	context_object_name = "listing"
 
 
+
 class ListingCreateView(CreateView):
-	form_class = ListingForm
-	template_name = "post.html"
-
-
-
-
-
-
-
-
+    form_class = ListingForm
+    template_name = "post.html"
