@@ -3,6 +3,7 @@ from django.views.generic import TemplateView, DetailView
 from django.core import serializers
 from django.http import HttpResponse
 from django.views.generic.edit import CreateView
+from itertools import chain
 
 from .forms import ListingForm
 from .models import ComplexName, Listing
@@ -16,14 +17,15 @@ def housing_API_view(request):
 
 	complexes = ComplexName.objects.all()
 	listings = Listing.objects.filter(apartment_complex=False)
+	joined_collection = list(chain(complexes, listings))
 
-	complex_output = serializers.serialize('json', complexes, fields=('name', 'address'))
-	listings_output = serializers.serialize('json', listings, fields=('name', 'address', 'city', 'state'))
+	json = serializers.serialize('json', joined_collection,)
+	# complex_output = serializers.serialize('json', complexes, fields=('name', 'address'))
+	# listings_output = serializers.serialize('json', listings, fields=('name', 'address', 'city', 'state'))
 
-	output = [complex_output,listings_output]
+	output = json
 
 	return HttpResponse(output, content_type='application/json')
-
 
 
 def home(request):

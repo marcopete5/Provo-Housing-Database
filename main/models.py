@@ -73,7 +73,7 @@ class Listing(models.Model):
 	BYU_housing = models.BooleanField(default=False)
 
 
-	amenity = models.ManyToManyField('Amenities', blank=True, null=True)
+	amenity = models.ManyToManyField('Amenities', blank=True)
 
 	apartment_complex = models.BooleanField(default=True)
 
@@ -151,6 +151,8 @@ class Amenities(models.Model):
 class ComplexName(models.Model):
 	name = models.CharField(max_length=40)
 	address = models.CharField(max_length=150)
+	latitude = models.FloatField(null=True, blank=True)
+	longitude = models.FloatField(null=True, blank=True)
 
 
 	def __unicode__(self):

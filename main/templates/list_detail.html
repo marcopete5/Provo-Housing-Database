@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Testing two HTML</title>
+
+{% block mainblock %}
+
+	<div class="">
+		<h1>{{ complex.name }}</h1>
+		<table class="table table-condensed">
+		<thead>
+			<tr>
+				<th>Headline</th>
+				<th>Address</th>
+				<th>Distance to BYU</th>
+				<th>Distance to UVU</th>
+				<th>Selling Price</th>
+			</tr>
+		</thead>
+			<tbody>
+		{% for listing in listings %}
+			
+					<tr>
+						<td>{{ listing.name }}</td>
+						<td>{{ listing.address }}</td>
+						<td>{{ listing.distance_from_BYU }}</td>
+						<td>{{ listing.distance_from_UVU }}</td>
+						<td>{{ listing.selling_price }}</td>
+					</tr>
+
+		{% endfor %}
+			</tbody>
+		</table>
+		
+
+
+
+	
+
+	</div>
+
+{% endblock mainblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

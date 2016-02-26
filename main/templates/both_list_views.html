@@ -21,9 +21,7 @@
 			  
 			  <input type="range" min="0" max="25" value="1" onchange=""/>
 			  <span id="range">0</span>
-			  <script type="text/javascript">
 
-			  </script>
 
 			<ul>Distance to UVU</ul>
 			  <input type="range" min="0" max="25" value="1"/>
@@ -101,20 +99,21 @@
 				
 						{% for house in house_list %}
 							<div class="house">
-								<div class="houseListing"><a href="/listing/{{ house.id }}">{{ house.name }}</a></div>
-								
+								<div class="houseListing">
+								<a href="/listing/{{ house.id }}">{{ house.name }}</a>
+								</div>
 							</div>
 						{% endfor %}
 					</div>
 				</div>
 					
-			</div>	
+			</div>
 		</div><!-- house list -->
 
 		<div class="col-xs-6" style="width: 50.77%; margin-right: -23px; float: right;"><!-- apartment complex -->
 			<div class="row border">
 				<img src=" {% static 'apartment.png' %} " class="apt" alt="">
-				<p class="icontitle">Apartment Complex Listings: 
+				<p class="icontitle">Apartment Complex Listings:
 					<div class="">
 						{% for complex in complex_list %}
 							<div class="complex">
@@ -143,8 +142,10 @@
 </div>
 
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="http://listjs.com/no-cdn/list.js"></script>
 	<script type="text/javascript" src="{% static 'js/base.js' %}"></script>
-	<script  async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaKLjivuDKpR4yNtlz53u5B68-xq02VVU&libraries=places&callback=initAutocomplete"></script>
+	<script  async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaKLjivuDKpR4yNtlz53u5B68-xq02VVU&libraries=places&callback=initMap"></script>
+	
 
 
 {% endblock mainblock %}
