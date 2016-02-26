@@ -12,10 +12,7 @@
 		<div class="col-xs-2">
 			
 			<div id="filters">
-				<input class="search" placeholder="Search" />
-				<button class="sort" data-sort="address">
-					Sort
-				</button>
+				<input id="search" class="search" placeholder="Search" />
 
 			<ul>Distance to BYU</ul>
 			  
@@ -114,17 +111,18 @@
 			<div class="row border">
 				<img src=" {% static 'apartment.png' %} " class="apt" alt="">
 				<p class="icontitle">Apartment Complex Listings:
-					<div class="">
+					<div id="listings">
 						{% for complex in complex_list %}
-							<div class="complex">
+							<div class="complex" id="complex">
 								{{ complex.name }}
-							</div>
-							<div class="listing" id="complex{{ complex.id }}">
+								<div class="listing" id="complex{{ complex.id }}">
 								{% for listing in complex.listing_set.all %}
-									<a href="/listing/{{ listing.id }}">{{ listing.address }}</a>
+									<a class="address" href="/listing/{{ listing.id }}">{{ listing.address }}</a>
 									</br>
 								{% endfor %}
+								</div>
 							</div>
+
 						{% endfor %}
 					</div>
 			</div>
@@ -142,7 +140,6 @@
 </div>
 
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script src="http://listjs.com/no-cdn/list.js"></script>
 	<script type="text/javascript" src="{% static 'js/base.js' %}"></script>
 	<script  async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaKLjivuDKpR4yNtlz53u5B68-xq02VVU&libraries=places&callback=initMap"></script>
 	
