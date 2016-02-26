@@ -26,26 +26,6 @@ def housing_API_view(request):
 	return HttpResponse(output, content_type='application/json')
 
 
-
-
-
-def list_units_in_complex(request, pk):
-	print "pk %s: " % pk
-	listings = Listing.objects.filter(complex_name=pk)
-	complexname = ComplexName.objects.get(pk=pk)
-	context={}
-
-	print"listings: %s" % listings
-
-	context['complex'] = complexname
-	context['listings'] = listings
-
-
-	return render(request, 'list_detail.html', context)
-
-
-
-
 def home(request):
 	complex_name = ComplexName.objects.all()
 	house_listings = Listing.objects.filter(apartment_complex=False)
