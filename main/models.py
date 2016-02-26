@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from django.db import models
 from housing.local_settings import local_GoogleAPI_key
+from django.core.urlresolvers import reverse
 
 import googlemaps
 
@@ -82,13 +83,13 @@ class Listing(models.Model):
 
 	distance_from_UVU = models.FloatField(null=True, blank=True, editable=False)
 
-	address = models.CharField(max_length=70)
+	address = models.CharField(max_length=70, null=True, blank=True)
 
 	apt_number = models.CharField(max_length=20,null=True, blank=True, verbose_name='Apt/Suite #')
 
-	city = models.CharField(max_length=70)
+	city = models.CharField(max_length=70, null=True, blank=True)
 
-	state = models.CharField(max_length=70)
+	state = models.CharField(max_length=70, null=True, blank=True)
 
 	selling_price = models.IntegerField()
 
@@ -104,10 +105,17 @@ class Listing(models.Model):
 		return self.address
 
 	def save(self):
+		if not self.address:
+			complex_address = self.complex_name.address 
+			full_address = complex_address
+		else:
+			full_address = ("%s %s %s" % self.address,self.city,self.state)
+
+
 		gmaps = googlemaps.Client(key=local_GoogleAPI_key)
 		
-		googleAPI_dict_BYU = gmaps.distance_matrix("%s %s %s" % (self.address,self.city,self.state), "155 East 1230 North, Provo, UT" )
-		googleAPI_dict_UVU = gmaps.distance_matrix("%s %s %s" % (self.address,self.city,self.state), "800 W. University Pkwy, Orem, Utah 84058" )
+		googleAPI_dict_BYU = gmaps.distance_matrix((full_address), "155 East 1230 North, Provo, UT" )
+		googleAPI_dict_UVU = gmaps.distance_matrix((full_address), "800 W. University Pkwy, Orem, Utah 84058" )
 
 
 		tempBYU = (googleAPI_dict_BYU['rows'][0]['elements'][0]['distance']['text']) #from google API
@@ -126,6 +134,8 @@ class Listing(models.Model):
 
 		super(Listing, self).save()
 
+	def get_absolute_url(self):
+		return reverse('main.views.home')
 
 	
 

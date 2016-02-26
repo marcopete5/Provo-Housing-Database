@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'django-select-multiple-field',
+    # thirdpartyapps,
+    'datetimewidget',
+    'crispy_forms',
+    # myapps,
     'main',
 ]
 
@@ -50,6 +53,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'housing.urls'
@@ -127,4 +131,4 @@ try:
 except Exception as e:
     pass
 
-#
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
