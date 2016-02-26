@@ -43,8 +43,7 @@ $(document).ready(function(){
 var options = {
   valueNames: [ 'address' ]
 };
-
-var userList = new List('filters', options);
+var address = new List('filters', options);
 
 
 
