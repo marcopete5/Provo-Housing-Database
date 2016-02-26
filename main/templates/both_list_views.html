@@ -7,7 +7,7 @@
 <div class="row">
 
 
-
+		<div class="create"><a href="/listingcreate" class="btn btn-primary">Post a Listing</a></div>
 		
 		<div class="col-xs-2">
 			
@@ -101,7 +101,8 @@
 				
 						{% for house in house_list %}
 							<div class="house">
-								<div class="houseListing">{{ house.name }}</div>
+								<div class="houseListing"><a href="/listing/{{ house.id }}">{{ house.name }}</a></div>
+								
 							</div>
 						{% endfor %}
 					</div>

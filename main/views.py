@@ -2,7 +2,9 @@ from django.shortcuts import render
 from django.views.generic import TemplateView, DetailView
 from django.core import serializers
 from django.http import HttpResponse
+from django.views.generic.edit import CreateView
 
+from .forms import ListingForm
 from .models import ComplexName, Listing
 
 
@@ -50,3 +52,16 @@ class AptListingDetailView(DetailView):
 	model = Listing
 	template_name = "detail_view.html"
 	context_object_name = "listing"
+
+
+class ListingCreateView(CreateView):
+	form_class = ListingForm
+	template_name = "post.html"
+
+
+
+
+
+
+
+

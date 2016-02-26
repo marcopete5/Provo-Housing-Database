@@ -9,6 +9,10 @@ html, body {
   margin-right:-22px;
 }
 
+.create {
+  float:right;
+  margin-right: 58px;
+}
 
 #filters {
   width:199px;

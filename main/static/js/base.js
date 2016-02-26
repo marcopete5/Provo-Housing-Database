@@ -23,9 +23,22 @@ $(document).ready(function(){
   });
 
   $('.complex').click(function(){
-  	console.log('test');
   	$(this).next().fadeIn('fast');
   })
+
+});
+
+
+$(document).ready(function(){
+	$('#div_id_address').hide();
+		$('#div_id_city').hide();
+		$('#div_id_state').hide();
+	$('#div_id_apartment_complex').click(function(){
+		$('#div_id_address').toggle(this.checked);
+		$('#div_id_city').toggle(this.checked);
+		$('#div_id_state').toggle(this.checked);
+		$('#div_id_complex_name').toggle(this.checked);
+	}) 
 
 });
 

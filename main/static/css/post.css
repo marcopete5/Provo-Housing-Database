@@ -1,0 +1,93 @@
+body {
+	background-color: red;
+}
+.add {
+	margin-left:44px;
+}
+.first {
+	margin-right: auto;
+	margin-left: auto;
+	width: 45%;
+	border: 3px solid;
+    border-radius: 19px;
+    box-shadow: 4px 5px 5px;
+    background-color: white;
+}
+.container {
+	width:100%;
+}
+.title {
+	text-shadow: 2px 2px 2px black;
+	color:white;
+	font-size: 30px;
+	text-align: center;
+	width:300px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.sub {
+	 float: right;
+    margin-right: 86%;
+    padding: 6px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+.bk {
+	margin-right: -25%;
+    float: right;
+    margin-top: 8%;
+}
+#div_id_name {
+	width:30%;
+}
+#div_id_roommates {
+	width:15%;
+}
+#div_id_availability_date {
+	width:30%;
+}
+#div_id_gender_choices {
+	width:15%;
+}
+#div_id_room_type {
+	width:15%;
+}
+#div_id_furnishings_type {
+	width:25%;
+}
+#div_id_contract_length {
+	width:20%;
+}
+#div_id_building_type {
+	width:20%;
+}
+#div_id_amenity {
+	width:45%;
+}
+#div_id_complex_name {
+	width:40%;
+}
+#div_id_address {
+	width:70%;
+}
+#div_id_apt_number {
+	width:20%;
+}
+#div_id_city {
+	width:15%;
+}
+#div_id_state {
+ 	width:10%;
+}
+#div_id_selling_price {
+	width:15%;
+}
+#div_id_description {
+	width:80%;
+}
+#div_id_upload_image {
+
+}
+#div_id_deposit {
+	width:10%;
+}
