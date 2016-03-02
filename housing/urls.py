@@ -2,6 +2,7 @@
 from django.conf.urls import url
 from django.contrib import admin
 from main.views import home, AptComplexDetailView, AptListingDetailView, ListingCreateView
+from django.conf import settings 
 
 
 urlpatterns = [
@@ -12,5 +13,6 @@ urlpatterns = [
 	url(r'^listing/(?P<pk>\d+)/$', AptListingDetailView.as_view()),
 	url(r'^listingcreate/$', ListingCreateView.as_view()),
 	url(r'^housing_api/', 'main.views.housing_API_view'),
+	url(r'^media/(?P<path>.*)/$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
 	url(r'^single_complex/(?P<pk>\d+)/$', 'main.views.list_units_in_complex'),
 ]

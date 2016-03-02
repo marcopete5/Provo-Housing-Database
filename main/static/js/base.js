@@ -43,73 +43,112 @@ $(document).ready(function(){
 });
 
 
+ $('#id_upload_image').change(function(){
+            if ($(this).files && $(this).files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#id_upload_image')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(200);
+                };
+
+                reader.readAsDataURL($(this).files[0]);
+            }
+        })
+
+
 
 	function initMap() {
-	 var map = new google.maps.Map(document.getElementById('map'), {
-	   center: {lat: 40.2573138, lng: -111.7089457},
-	   
-	   zoom: 13,
-	   mapTypeId: google.maps.MapTypeId.ROADMAP
-	 });
-
-	 // Create the search box and link it to the UI element.
-	 var input = document.getElementById('pac-input');
-	 var searchBox = new google.maps.places.SearchBox(input);
-	 map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-	 // Bias the SearchBox results towards current map's viewport.
-	 map.addListener('bounds_changed', function() {
-	   searchBox.setBounds(map.getBounds());
-	 });
-
-	 var markers = [];
-	 // [START region_getplaces]
-	 // Listen for the event fired when the user selects a prediction and retrieve
-	 // more details for that place.
-	 searchBox.addListener('places_changed', function() {
-	   var places = searchBox.getPlaces();
-
-	   if (places.length == 0) {
-	     return;
-	   }
-
-	   // Clear out the old markers.
-	   markers.forEach(function(marker) {
-	     marker.setMap(null);
-	   });
-	   markers = [];
-
-	   // For each place, get the icon, name and location.
-	   var bounds = new google.maps.LatLngBounds();
-	   places.forEach(function(place) {
-	     var icon = {
-	       url: place.icon,
-	       size: new google.maps.Size(71, 71),
-	       origin: new google.maps.Point(0, 0),
-	       anchor: new google.maps.Point(17, 34),
-	       scaledSize: new google.maps.Size(25, 25)
-	     };
-
-	     // Create a marker for each place.
-	     markers.push(new google.maps.Marker({
-	       map: map,
-	       icon: icon,
-	       title: place.name,
-	       position: place.geometry.location
-	     }));
-
-	     if (place.geometry.viewport) {
-	       // Only geocodes have viewport.
-	       bounds.union(place.geometry.viewport);
-	     } else {
-	       bounds.extend(place.geometry.location);
-	     }
-	   });
-	   map.fitBounds(bounds);
-	 });
-	 // [END region_getplaces]
-	}
+		var map = new google.maps.Map(document.getElementById('map'), {
 
 
 
+			center: {lat: 40.2573138, lng: -111.7089457},
+		 
+			zoom: 13,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+	});
+		 // Create the search box and link it to the UI element.
+     var input = document.getElementById('pac-input');
+     var searchBox = new google.maps.places.SearchBox(input);
+     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
+     // Bias the SearchBox results towards current map's viewport.
+     map.addListener('bounds_changed', function() {
+       searchBox.setBounds(map.getBounds());
+     });
+
+		var geocoder = new google.maps.Geocoder();
+		$.get("http://127.0.0.1:8000/housing_api", function(data, status){
+			var x;
+			// console.log(data)
+			for (x = 0; x < data.length; x++) {
+				
+
+					geocoder = new google.maps.Geocoder();
+					// console.log('data:'+data[x].fields.address)
+					// console.log("x= "+x)
+					function codeAddress(data, x) {
+						console.log('-----------------')
+						if (data[x].model == 'main.complexname') {
+							var address =  data[x].fields.address
+						} else {
+							var address = data[x].fields.address+' '+data[x].fields.city+', '+data[x].fields.state
+						}
+
+						
+
+						console.log('addy:'+address)
+						// document.getElementById("address").value;
+						console.log('geo  '+geocoder)
+						location.LatLng
+						geocoder.geocode( { 'address': address }, function(results, status) {
+							latitude = results[0].geometry.location.lat() 
+							longitude = results[0].geometry.location.lng()
+
+							console.log("x= "+x)
+							if (status == google.maps.GeocoderStatus.OK) {
+								console.log("data[x].model: "+data[x].model)
+								if (data[x].model == 'main.complexname') {
+
+									var myLatlng = new google.maps.LatLng(data[x].fields.latitude, data[x].fields.longitude);
+									map.setCenter(results[0].geometry.location);
+									var marker = new google.maps.Marker({
+
+											map: map, 
+											position: myLatlng,
+											url: 'http://127.0.0.1:8000/single_complex/'+data[x].pk,
+											title:data[x].fields.name
+
+									}); //var marker
+									google.maps.event.addListener(marker, 'click', function() {
+										window.location.href = marker.url;});
+									console.log("blue marker complex: "+x)
+
+								} else if (data[x].model == 'main.listing') {
+									map.setCenter(results[0].geometry.location);
+									var marker = new google.maps.Marker({
+											icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+											map: map, 
+											position: results[0].geometry.location,
+											url: 'http://127.0.0.1:8000/listing/'+data[x].pk,
+									}); //var marker
+									console.log("red marker elif: "+x)
+									google.maps.event.addListener(marker, 'click', function() {
+										window.location.href = marker.url;});
+								}
+							} else {
+								alert("Geocode was not successful for the following reason: " + status + address);
+								console.log('alert')
+							}
+								console.log('^^^^^^^^^^^^^^^^')
+						});
+
+					}
+					codeAddress(data, x)
+			}
+		});//close get housing_api
+
+	};

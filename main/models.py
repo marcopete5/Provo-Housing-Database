@@ -95,7 +95,7 @@ class Listing(models.Model):
 
 	description = models.TextField()
 
-	upload_image = models.ImageField(null=True, blank=True)
+	upload_image = models.ImageField(upload_to='media',null=True, blank=True)
 
 	deposit = models.CharField(max_length=70, null=True, blank=True)
 
@@ -109,7 +109,7 @@ class Listing(models.Model):
 			complex_address = self.complex_name.address 
 			full_address = complex_address
 		else:
-			full_address = ("%s %s %s" % self.address,self.city,self.state)
+			full_address = "%s %s %s" % (self.address,self.city,self.state)
 
 
 		gmaps = googlemaps.Client(key=local_GoogleAPI_key)
