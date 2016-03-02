@@ -37,6 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # for django-allauth
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
     # thirdpartyapps,
     'datetimewidget',
     'crispy_forms',
@@ -69,6 +75,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request', # allauth
             ],
         },
     },
@@ -76,6 +83,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'housing.wsgi.application'
 
+ACCOUNT_ADAPTER = 'project.users.allauth.AccountAdapter'  #allauth
+ 
+# auth and allauth settings
+LOGIN_REDIRECT_URL = '/'
+SOCIALACCOUNT_QUERY_EMAIL = True
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'SCOPE': ['email', 'publish_actions'], # was publish_stream, now this 40 mins later
+        'METHOD': 'js_sdk'  # instead of 'oauth2'
+    }
+}
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #allauth
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
@@ -105,6 +125,11 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',
+        'allauth.account.auth_backends.AuthenticationBackend',) #all auth
+SITE_ID = 2 #allauth - in the django admin under "sites" this refers to the site you are testing/using
 
 
 # Internationalization

@@ -101,23 +101,31 @@ class Listing(models.Model):
 
 	creation_date = models.DateField(auto_now=True)
 
+	latitude = models.FloatField(null=True, blank=True, editable=False)
+	longitude = models.FloatField(null=True, blank=True, editable=False)
+
 	def __unicode__(self):
 		return self.address
 
 	def save(self):
 		if not self.address:
 			complex_address = self.complex_name.address 
-			full_address = complex_address
+			full_address = "%s %s" % (complex_address, "USA")
 		else:
-			full_address = ("%s %s %s" % self.address,self.city,self.state)
+			full_address = "%s %s %s %s" % (self.address,self.city,self.state,"USA")
 
 
-		gmaps = googlemaps.Client(key=local_GoogleAPI_key)
-		
-		googleAPI_dict_BYU = gmaps.distance_matrix((full_address), "155 East 1230 North, Provo, UT" )
-		googleAPI_dict_UVU = gmaps.distance_matrix((full_address), "800 W. University Pkwy, Orem, Utah 84058" )
+		gmaps = googlemaps.Client(key='AIzaSyC1iiIa7EjCUTNfZGKyPS9dFp6fEaZGgps')
+		latlng = gmaps.geocode(full_address)
+		print "88888"
+		print latlng
+		# self.latitude = 
+		# self.longitude =
+	
+		googleAPI_dict_BYU = gmaps.distance_matrix((full_address), "Brigham Young University, Provo, UT 84602" )
+		googleAPI_dict_UVU = gmaps.distance_matrix((full_address), "Utah Valley University, 800 West University Parkway, Orem, UT 84058" )
 
-
+		print "to byu: %s" % googleAPI_dict_BYU
 		tempBYU = (googleAPI_dict_BYU['rows'][0]['elements'][0]['distance']['text']) #from google API
 		tempUVU = (googleAPI_dict_UVU['rows'][0]['elements'][0]['distance']['text'])
 		
@@ -130,6 +138,8 @@ class Listing(models.Model):
 		self.distance_from_BYU = str_to_miles_convert(tempBYU)
 		print "dist %d" % self.distance_from_BYU
 		self.distance_from_UVU = str_to_miles_convert(tempUVU)
+
+
 
 
 		super(Listing, self).save()
@@ -153,6 +163,8 @@ class ComplexName(models.Model):
 	address = models.CharField(max_length=150)
 	latitude = models.FloatField(null=True, blank=True)
 	longitude = models.FloatField(null=True, blank=True)
+	website = models.CharField(max_length=70, null=True, blank=True)
+	phone_number = models.CharField(max_length=20, null=True, blank=True)
 
 
 	def __unicode__(self):
