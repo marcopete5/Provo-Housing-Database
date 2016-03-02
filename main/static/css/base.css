@@ -296,18 +296,23 @@ p {
 }
 
 .listing {
+/*
   padding-left: 8%;
   font-size: 1.2em;
+*/
   /*for the jquery*/
   display: none; 
 
 }
 
+.address {
+  padding-left: 8%;
+  font-size: .7em;
+}
+
 .houseListing {
   padding-left: 8%;
   font-size: 1.2em;
-
-
 
 }
 
@@ -337,7 +342,9 @@ p {
     height: 105px;
 }
 
-
+.hidden {
+  display:none;
+}
 
 
 
