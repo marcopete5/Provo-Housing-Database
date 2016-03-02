@@ -13,5 +13,6 @@ urlpatterns = [
 	url(r'^listingcreate/$', ListingCreateView.as_view()),
 	url(r'^housing_api/', 'main.views.housing_API_view'),
 	url(r'^single_complex/(?P<pk>\d+)/$', 'main.views.list_units_in_complex'),
+	url(r'^accounts/$', 'main.views.home'),
 	url(r'^accounts/', include('allauth.urls')),
 ]

@@ -1,8 +1,9 @@
+{% extends "base 2.html" %}
 {% load staticfiles %}
 <!DOCTYPE html>
 <html>
+{% block extra_head %}
 
-<head>
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 	<meta charset="utf-8">
 
@@ -13,40 +14,43 @@
 
 	<link rel="stylesheet" type="text/css" href=" {% static 'css/base.css' %} ">
 
-</head>
+
+{% endblock %}
 
 <body>
-<script> <!-- facebook code -->
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '891354204306437',
-      xfbml      : true,
-      version    : 'v2.5'
-    });
-  };
+{% block header %}
+	<script> <!-- facebook code -->
+	  window.fbAsyncInit = function() {
+		FB.init({
+		  appId      : '891354204306437',
+		  xfbml      : true,
+		  version    : 'v2.5'
+		});
+	  };
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>  <!-- end facebook code -->
+	  (function(d, s, id){
+		 var js, fjs = d.getElementsByTagName(s)[0];
+		 if (d.getElementById(id)) {return;}
+		 js = d.createElement(s); js.id = id;
+		 js.src = "//connect.facebook.net/en_US/sdk.js";
+		 fjs.parentNode.insertBefore(js, fjs);
+	   }(document, 'script', 'facebook-jssdk'));
+	</script>  <!-- end facebook code -->
 
 
 
-<div class="container-fluid">
-	<div class="row clearfix">
-		<div class="top">
-			<h2 id="title">Provo Housing Database</h2>
+	<div class="container-fluid">
+		<div class="row clearfix">
+			<div class="top">
+				<h2 id="title">Provo Housing Database</h2>
+			</div>
+			<div class="spacer"></div>
+		
+
+
 		</div>
-		<div class="spacer"></div>
-	
-
-
-	</div>
-
+{% endblock %}
+{% block content %}
 	
 
 
@@ -63,6 +67,7 @@
 <input id="pac-input" class="controls" type="text" placeholder="Search Box">
 
 </div>
+{% endblock %}
 </body>
 
 </html>

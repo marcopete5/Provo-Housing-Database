@@ -31,68 +31,77 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    # for django-allauth
-    'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.facebook',
-    # thirdpartyapps,
-    'datetimewidget',
-    'crispy_forms',
-    # myapps,
-    'main',
+	'django.contrib.admin',
+	'django.contrib.auth',
+	'django.contrib.contenttypes',
+	'django.contrib.sessions',
+	'django.contrib.messages',
+	'django.contrib.staticfiles',
+	# for django-allauth
+	'django.contrib.sites',
+	'allauth',
+	'allauth.account',
+	'allauth.socialaccount',
+	'allauth.socialaccount.providers.facebook',
+	# thirdpartyapps,
+	'datetimewidget',
+	'crispy_forms',
+	# myapps,
+	'main',
 ]
 
+AUTHENTICATION_BACKENDS = (
+	'django.contrib.auth.backends.ModelBackend',
+	'allauth.account.auth_backends.AuthenticationBackend',) #all auth
+SITE_ID = 2 #allauth - in the django admin under "sites" this refers to the site you are testing/using
+
+
 MIDDLEWARE_CLASSES = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
+	'django.middleware.security.SecurityMiddleware',
+	'django.contrib.sessions.middleware.SessionMiddleware',
+	'django.middleware.common.CommonMiddleware',
+	'django.middleware.csrf.CsrfViewMiddleware',
+	'django.contrib.auth.middleware.AuthenticationMiddleware',
+	'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+	'django.contrib.messages.middleware.MessageMiddleware',
+	'django.middleware.clickjacking.XFrameOptionsMiddleware',
+	'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'housing.urls'
 
 TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.request', # allauth
-            ],
-        },
-    },
+	{
+		'BACKEND': 'django.template.backends.django.DjangoTemplates',
+		'DIRS': [],
+		'APP_DIRS': True,
+		'OPTIONS': {
+			'context_processors': [
+				'django.template.context_processors.debug',
+				'django.template.context_processors.request',
+				'django.contrib.auth.context_processors.auth',
+				'django.contrib.messages.context_processors.messages',
+				'django.template.context_processors.request', # allauth
+			],
+		},
+	},
 ]
 
 WSGI_APPLICATION = 'housing.wsgi.application'
 
-ACCOUNT_ADAPTER = 'project.users.allauth.AccountAdapter'  #allauth
+# ACCOUNT_ADAPTER = 'project.users.allauth.AccountAdapter'  #allauth
+APP_PATH = os.path.dirname(os.path.abspath(__file__))
  
 # auth and allauth settings
+ACCOUNT_LOGOUT_ON_GET = True
 LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/'
 SOCIALACCOUNT_QUERY_EMAIL = True
 SOCIALACCOUNT_PROVIDERS = {
-    'facebook': {
-        'SCOPE': ['email', 'publish_actions'], # was publish_stream, now this 40 mins later
-        'METHOD': 'js_sdk'  # instead of 'oauth2'
-    }
+	'facebook': {
+		'SCOPE': ['email', 'publish_actions'], # was publish_stream, now this 40 mins later
+		'METHOD': 'js_sdk'  # instead of 'oauth2'
+	}
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #allauth
@@ -101,10 +110,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #allauth
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
+	'default': {
+		'ENGINE': 'django.db.backends.mysql',
 
-    }
+	}
 }
 
 
@@ -112,24 +121,21 @@ DATABASES = {
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+	{
+		'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+	},
+	{
+		'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+	},
+	{
+		'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+	},
+	{
+		'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+	},
 ]
 
 
-AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',
-        'allauth.account.auth_backends.AuthenticationBackend',) #all auth
-SITE_ID = 2 #allauth - in the django admin under "sites" this refers to the site you are testing/using
 
 
 # Internationalization
@@ -152,8 +158,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 try:
-    from local_settings import *
+	from local_settings import *
 except Exception as e:
-    pass
+	pass
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
