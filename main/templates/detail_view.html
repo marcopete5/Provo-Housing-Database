@@ -1,72 +1,95 @@
 {% extends 'base.html' %}
 
-
-
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 	<meta charset="UTF-8">
 	<title>Testing two HTML</title>
-</head>
+
+	<link rel="stylesheet" type="text/css" href=" {% static 'css/detail_view.css' %} " ></head>
 
 <body>
-{% block mainblock %}
-
-	<div class="bigPicture">
+	{% block mainblock %}
+	<div class="container-flow">
 
 		<div>
-			
-			<h3>Listing for: {{ listing.complex_name.name }} </h3>
+			<!-- <h3>Listing for: {{ listing.complex_name.name }}</h3>
+		-->
+		<div class="row">
 
-			<h4>Image:</h4> {{ listing.upload_image }}
-			<h4>Seller Name:</h4> {{ listing.name }}
-			<h4>Availability Date:</h4> {{ listing.availability_date }}
-			<h4>Number of Roommates:</h4>{{ listing.roommates}}
-			<h4>Roommate Gender:</h4>{{ listing.gender_choices }}
-			<h4>Room Type:</h4>{{ listing.room_type }}
-			<h4>Furnishings:</h4>{{ listing.furnishings_type }}
-			<h4>Contract Length:</h4>{{ listing.contract_length }}
-			<h4>Building Type:</h4>{{ listing.building_type }}
-			<h4>Description:</h4> {{ listing.description }}
-			<h4>Address:</h4> {{ listing.address }}
-			<h4>City:</h4> {{ listing.city }}
-			<h4>State:</h4> {{ listing.state }}
-			<h4>BYU Housing:</h4> {{ listing.BYU_housing }}
-			<h4>Is it an Apartment Complex:</h4> {{ listing.apartment_complex }}
-			<h4>Complex Name:</h4> {{ listing.complex_name }}
-			<h4>Distance from BYU:</h4> {{ listing.distance_from_BYU  }}
-			<h4>Distance from UVU:</h4> {{ listing.distance_from_UVU  }}
-			<h4>Selling Price:</h4> {{ listing.selling_price }}
-			<h4>Amenities:</h4>
+			<div class="col-xs-8">
+				<img src="/{{ listing.upload_image }}" alt="your image" style="        box-shadow: 2px 3px 4px;
+							border: 2px solid rgb(11, 11, 11);
+							margin: -15px;
+							width: 45%;">
+				<p class="adeets">
+					<br>
+					<p id="address">
+						{{ listing.address }}
+						<br>{{ listing.city }}, {{ listing.state }}</p>
+				</p>
+
+				<hr class="hr"></div>
+			<div class="col-xs-4">
+				<img src="{% static "profile.png" %}" alt="" style="    border: 1px solid;
+	border-radius: 115px;
+	margin-top: 20px;
+	width: 25%;
+	margin-left: -60px;"	>
+				<p class="deets" id="nam">{{ listing.name }}</p>
+			</div>
+			<div class="col-xs-8">
+				<p class="deets" id="price">${{ listing.selling_price }}</p>
+				<img src="{% static "home.png" %}" alt="" id="ic">
+				<p class="deets" id="room">{{ listing.room_type }}</p>
+				<img src="{% static "contract.png" %}" alt="" id="icontract">
+				<p class="deets" id="contract">{{ listing.contract_length }}</p>
+				<img src="{% static "furnish.png" %}" alt="" id="ifurnish">
+				<p class="deets" id="furnish">{{ listing.furnishings_type }}</p>
+				<p class="deets" id="available">{{ listing.availability_date }}</p>
+				<hr class="hrs">
+				<p class="deets" id="descrip"> <u>About this Listing</u>
+					<br>
+					<br>{{ listing.description }}</p>
+
+				<br>
+				<br>
+				<br>
+				<br>
+
+				<p class="deets" id="amen">
+					Amenities:
 			{% if listing.amenity.all %}
 				{% for amenity in listing.amenity.all %}
-			{{ amenity.amenity }}</br>
+			{{ amenity.amenity }}
+				</br>
 				{% endfor %}
 			{% else %}
 			   no amenities
 			{% endif %}
+				<p class="deets">Number of Roommates:{{ listing.roommates}}</p>
+				<p class="deets">Roommate Gender:{{ listing.gender_choices }}</p>
 
+				<p class="deets">Building Type:{{ listing.building_type }}</p>
 
+				<p class="deets">BYU Housing: {{ listing.BYU_housing }}</p>
+				<p class="deets">Is it an Apartment Complex: {{ listing.apartment_complex }}</p>
+				<p class="deets">Complex Name: {{ listing.complex_name }}</p>
+				<p class="deets">Distance from BYU: {{ listing.distance_from_BYU  }}</p>
+				<p class="deets">Distance from UVU: {{ listing.distance_from_UVU  }}</p>
+
+			</div>
 		</div>
+
+		<br/>
+		<br/>
 
 	</div>
 
+</div>
 {% endblock mainblock %}
-
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-

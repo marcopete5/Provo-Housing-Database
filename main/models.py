@@ -95,7 +95,7 @@ class Listing(models.Model):
 
 	description = models.TextField()
 
-	upload_image = models.ImageField(null=True, blank=True)
+	upload_image = models.ImageField(upload_to='media',null=True, blank=True)
 
 	deposit = models.CharField(max_length=70, null=True, blank=True)
 
@@ -125,7 +125,7 @@ class Listing(models.Model):
 		googleAPI_dict_BYU = gmaps.distance_matrix((full_address), "Brigham Young University, Provo, UT 84602" )
 		googleAPI_dict_UVU = gmaps.distance_matrix((full_address), "Utah Valley University, 800 West University Parkway, Orem, UT 84058" )
 
-		print "to byu: %s" % googleAPI_dict_BYU
+
 		tempBYU = (googleAPI_dict_BYU['rows'][0]['elements'][0]['distance']['text']) #from google API
 		tempUVU = (googleAPI_dict_UVU['rows'][0]['elements'][0]['distance']['text'])
 		
@@ -138,8 +138,6 @@ class Listing(models.Model):
 		self.distance_from_BYU = str_to_miles_convert(tempBYU)
 		print "dist %d" % self.distance_from_BYU
 		self.distance_from_UVU = str_to_miles_convert(tempUVU)
-
-
 
 
 		super(Listing, self).save()

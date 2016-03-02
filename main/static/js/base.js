@@ -38,12 +38,21 @@ $(document).ready(function(){
 
 	
 
-var options = {
-	valueNames: [ 'address' ]
-};
 
+ $('#id_upload_image').change(function(){
+            if ($(this).files && $(this).files[0]) {
+                var reader = new FileReader();
 
+                reader.onload = function (e) {
+                    $('#id_upload_image')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(200);
+                };
 
+                reader.readAsDataURL($(this).files[0]);
+            }
+        })
 $("#search").keyup(function () {
 	var searchTerm = $("#search").val();
 	var addresses = $("#listings").find(".address");

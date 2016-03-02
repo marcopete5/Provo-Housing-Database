@@ -4,7 +4,101 @@ html, body {
   margin: 0;
   padding: 0;
 }
+@media screen and (max-width: 699px) and (min-width: 520px) {
+  #nam {
+    font-size: 10px !important;
+  }
+}
 
+#nam {
+margin-left: 85px;
+    margin-top: -87px;
+    font-size: 30px;
+  }
+.hr {
+  margin-right: -53%;
+    margin-left: -12px;
+    margin-top: 78px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 2px solid rgba(9, 9, 9, 0.36);
+}
+.hrs {
+  margin-right: -53%;
+    margin-left: -12px;
+    margin-top: 45px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 2px solid rgba(9, 9, 9, 0.36);
+}
+#ic {
+margin-left: 320px;
+margin-top: -229px;
+}
+#icontract {
+     width: 52px;
+    margin-left: 461px;
+    margin-top: -173px;
+
+}
+#contract {
+  margin-left: 434px;
+    margin-top: -57px;
+    font-size: 19px;
+}
+#ifurnish {
+   width: 55px;
+    margin-left: 610px;
+    margin-top: -173px;
+
+}
+#furnish {
+      margin-left: 585px;
+    margin-top: -57px;
+    font-size: 19px;
+}
+#available {
+    margin-right: -400px;
+    float: right;
+    font-size: 50px;
+    margin-top: -88px;
+}
+.adeets {
+  margin-top: -120px;
+  text-align: left;
+  font-size: 20px;
+}
+
+.deets {
+  margin-top: 20px;
+  text-align: left;
+  font-size: 20px;
+}
+
+#price {
+    width: 100%;
+    font-size: 115px;
+    text-align: left;
+    margin-top: -30px;
+  }
+#address {
+     text-align: left;
+    margin-left: 50%;
+    margin-top: -15.34%;
+    font-size: 60px;
+
+}
+#room {
+      margin-top: -85px;
+    margin-left: 304px;
+    font-size: 19px;
+}
+#bullet {
+  font-size: 20px;
+}
+#descrip {
+  margin-top: 60px;
+}
 .row {
   margin-right:-22px;
 }
