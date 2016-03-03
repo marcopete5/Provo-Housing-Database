@@ -1,4 +1,5 @@
 {% load socialaccount %}
+{% load staticfiles %}
 
 {% get_providers as socialaccount_providers %}
 
@@ -15,7 +16,16 @@
 {% endif %}
 <li>
   <a title="{{provider.name}}" class="socialaccount_provider {{provider.id}}" 
-     href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">{{provider.name}}</a>
+     href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">
+     	
+	<div class="col-sm-offset-3">
+		{% if provider.name == 'Facebook' %}
+					<img src="{% static 'FBloginbutton.png' %}">
+		{% else %}
+			{{provider.name}}
+		{% endif %}
+	</div>
+     </a>
 </li>
 {% endfor %}
 

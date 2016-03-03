@@ -40,19 +40,19 @@ $(document).ready(function(){
 
 
  $('#id_upload_image').change(function(){
-            if ($(this).files && $(this).files[0]) {
-                var reader = new FileReader();
+			if ($(this).files && $(this).files[0]) {
+				var reader = new FileReader();
 
-                reader.onload = function (e) {
-                    $('#id_upload_image')
-                        .attr('src', e.target.result)
-                        .width(150)
-                        .height(200);
-                };
+				reader.onload = function (e) {
+					$('#id_upload_image')
+						.attr('src', e.target.result)
+						.width(150)
+						.height(200);
+				};
 
-                reader.readAsDataURL($(this).files[0]);
-            }
-        })
+				reader.readAsDataURL($(this).files[0]);
+			}
+		})
 $("#search").keyup(function () {
 	var searchTerm = $("#search").val();
 	var addresses = $("#listings").find(".address");
@@ -78,34 +78,6 @@ $("#search").keyup(function () {
 
 });
 
-function filter_data(data) {
-	return data 
-
-}
-
-
-function withDelay(data, x, map, myVar)
-{
-	console.log('dl:'+data.length)
-	if (x == data.length)
-	{
-		clearInterval(myVar)
-	}
-	else
-	{
-		console.log('x is: '+x)
-		geocoder = new google.maps.Geocoder();
-		// console.log('data:'+data[x].fields.address)
-		// console.log("x= "+x)
-		
-		// codeAddress(data, x, geocoder, map)
-		x++
-	}
-
-	
-			
-
-}
 
 
 function initMap() 
@@ -129,117 +101,59 @@ function initMap()
 		searchBox.setBounds(map.getBounds());
 	});
 
-	var geocoder = new google.maps.Geocoder();
-	$.get("http://127.0.0.1:8000/housing_api", function(data, status)
+	$.get("http://localhost:8000/housing_api", function(data, status)
 	{
-		data = filter_data(data)
-		// console.log(data)
-		console.log('________ data _____________'+data)
-
-
-		var x = 1;
-		// var myVar = setInterval(withDelay, 1000);
+		for (var x=0;x < data.length; x++) 
+		{
+			google.maps.event.addDomListener(window, 'load', codeAddress(data, x, map))
+		}
 	});//close get housing_api
 }
 
 
-		function codeAddress(data, x, geocoder, map) 
-		{
-			console.log('entering codeAddress function')
-			var markerOptions = 
-			{
-				map
-			}
-
-			if (data[x].model == 'main.complexname') 
-			{
-				var address =  data[x].fields.address +' USA'
-				var complex_name = data[x].fields.name
-				console.log(x+' complex address: '+address+' Name: '+complex_name)
-			} 
-			else 
-			{
-				var address = data[x].fields.address+' '+data[x].fields.city+', '+data[x].fields.state
-				console.log(x+' apartment address: '+address+' Name: '+complex_name)
-			}
-			
-			location.LatLng
-			geocoder.geocode( { 'address': address }, function(results, status) 
-			{
-
-				console.log('geocode results: '+results+' And status: '+status)
-				latitude = results[0].geometry.location.lat() 
-				longitude = results[0].geometry.location.lng()
-
-				console.log("x= "+x)
+function codeAddress(data, x, map) 
+{
+	latitude = data[x].fields.latitude
+	longitude = data[x].fields.longitude
+	var point = {lat: latitude, lng: longitude}	
+	console.log(point)
+	console.log(x)
 
 
-				if (status == 'OK') 
-				{
-					console.log('status from google is:'+status)
-					console.log("data[x].model: "+data[x].model)
-					if (data[x].model == 'main.complexname') 
-					{
+	if (data[x].model == 'main.complexname') 
+	{
+		var complex_name = data[x].fields.name
+		var marker = new google.maps.Marker
+		({
+				map: map, 
+				position: point,
+				url: 'http://127.0.0.1:8000/single_complex/'+data[x].pk,
+				title:data[x].fields.name,
+				zIndex: 10
 
-						var myLatlng = new google.maps.LatLng(data[x].fields.latitude, data[x].fields.longitude);
-						map.setCenter(results[0].geometry.location);
-						console.log('a complex:')
-						var marker = new google.maps.Marker
-						({
+		}); 
 
-								map: map, 
-								position: myLatlng,
-								url: 'http://127.0.0.1:8000/single_complex/'+data[x].pk,
-								title:data[x].fields.name
+	} 
+	else 
+	{
+		var marker = new google.maps.Marker
+		({
+				icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+				map: map, 
+				position: point,
+				url: 'http://127.0.0.1:8000/listing/'+data[x].pk,
+		}); 	
+	}
+	
 
-						}); //var marker
-						console.log('-----'+myLatlng+'-----')
-						google.maps.event.addListener(marker, 'click', function() 
-						{
-							window.location.href = marker.url;
-						});
-						console.log("big red marker complex: "+x)
 
-					} 
-					else if (data[x].model == 'main.listing') 
-					{
-						map.setCenter(results[0].geometry.location);
-						var marker = new google.maps.Marker
-						({
-								icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-								map: map, 
-								position: results[0].geometry.location,
-								url: 'http://127.0.0.1:8000/listing/'+data[x].pk,
-						}); //var marker
-						console.log("blue marker elif: "+x)
-						google.maps.event.addListener(marker, 'click', function() 
-						{
-							window.location.href = marker.url;
-						});
-					} 
-				} 
-				else     // ====== Decode the error status ======
-				{
-					console.log('else not OK')
-					// === if we were sending the requests too fast, try this one again and increase the delay
-					if (status == 'OVER_QUERY_LIMIT') 
-					{
-						console.log('OVER_QUERY_LIMIT')
-						nextAddress--;
-						delay++;
-					} 
-					else 
-					{
-						var reason="Code "+status;
-						var msg = 'address="' + search + '" error=' +reason+ '(delay='+delay+'ms)<br>';
-						document.getElementById("messages").innerHTML += msg;
-					}   
 
-					console.log('^^^^^^^^^^^^^^^^')
-				}
-
-			}); //geocoder.geocode
-		};
+	google.maps.event.addListener(marker, 'click', function() 
+	{
+		window.location.href = marker.url;
+	});
+	
+};
 
 
 

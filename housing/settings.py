@@ -53,7 +53,7 @@ INSTALLED_APPS = [
 AUTHENTICATION_BACKENDS = (
 	'django.contrib.auth.backends.ModelBackend',
 	'allauth.account.auth_backends.AuthenticationBackend',) #all auth
-SITE_ID = 2 #allauth - in the django admin under "sites" this refers to the site you are testing/using
+SITE_ID = 3 #allauth - in the django admin under "sites" this refers to the site you are testing/using
 
 
 MIDDLEWARE_CLASSES = [
