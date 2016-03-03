@@ -181,7 +181,7 @@ margin-top: -229px;
     z-index: 10;
     position: fixed;
     background-color: red;
-    height: 100px;
+    height: 125px;
     width: 100%;
     /*margin-top: -98px;*/
 }
@@ -339,7 +339,7 @@ p {
 
 .spacer  {
     width: 100%;
-    height: 105px;
+    height: 130px;
 }
 
 .hidden {
