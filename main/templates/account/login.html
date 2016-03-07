@@ -33,16 +33,16 @@
 		<p>{% blocktrans %}If you have not created an account yet, then please
 		<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
 		{% endif %}
-		<div class="row">
-			<div class="col-sm-7 col-sm-offset-2"> 
-			<form class="login" method="POST" action="{% url 'account_login' %}">
-			  {% csrf_token %}
-			 {{ form | crispy }}
-			 {% if redirect_field_value %}
-			  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-			  {% endif %}
-				</div>
+<div class="row">
+	<div class="col-sm-7 col-sm-offset-2"> 
+	<form class="login" method="POST" action="{% url 'account_login' %}">
+	  {% csrf_token %}
+	 {{ form | crispy }}
+	 {% if redirect_field_value %}
+	  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+	  {% endif %}
 		</div>
+</div>
 
 		  <div class="col-sm-8 col-sm-offset-8">
 		  	<button class="primaryAction" type="submit">{% trans "Sign In" %}</button><br /><br />
